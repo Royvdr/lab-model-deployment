@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Retail Sales Forecaster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <div class="grid">
+        <div class="box">
+            <h1>Daily Sales Predictor</h1>
+            <p>Enter the expected store metrics below to calculate the estimated revenue for the day.</p>
+
+            <form action="{{ url_for('predict')}}" method="post">
+                
+                <div class="input-group">
+                    <label for="customers">Expected Number of Customers</label>
+                    <input type="number" id="customers" name="customers" placeholder="e.g. 500" required="required">
+                </div>
+
+                <div class="input-group">
+                    <label for="promotion">Is a Promotion Running?</label>
+                    <select id="promotion" name="promotion" required>
+                        <option value="0">No Promotion</option>
+                        <option value="1">Yes, Active Promotion</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="school_holiday">Is it a School Holiday?</label>
+                    <select id="school_holiday" name="school_holiday" required>
+                        <option value="0">Regular Day</option>
+                        <option value="1">School Holiday</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Calculate Predicted Sales</button>
+            </form>
+
+            <div class="result-area">
+                <h2>{{ prediction_text }}</h2>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
